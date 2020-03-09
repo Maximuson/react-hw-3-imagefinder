@@ -3,7 +3,7 @@ import styles from './App.module.css';
 import Searchbar from '../Searchbar/Searchbar';
 import pixabay from '../../api/pixabay';
 import { ImageGallery } from '../ImageGallery/ImageGallery';
-import { Modal } from '../Modal/Modal';
+import Modal from '../Modal/Modal';
 
 class App extends Component {
   state = {
@@ -18,6 +18,22 @@ class App extends Component {
       return {
         ...ps,
         value,
+      };
+    });
+  };
+  closeOverlay = () => {
+    this.setState(() => {
+      return {
+        modalImage: '',
+        isVisibleModal: false,
+      };
+    });
+  };
+  onImageClick = modalImage => {
+    this.setState(() => {
+      return {
+        modalImage,
+        isVisibleModal: true,
       };
     });
   };
@@ -64,9 +80,13 @@ class App extends Component {
         <ImageGallery
           isLoading={this.state.isLoading}
           gallery={this.state.gallery}
+          onImageClick={this.onImageClick}
         />
         {this.state.isVisibleModal && (
-          <Modal modalImage={this.state.modalImage} />
+          <Modal
+            closeOverlay={this.closeOverlay}
+            modalImage={this.state.modalImage}
+          />
         )}
       </div>
     );

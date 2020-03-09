@@ -4,7 +4,7 @@ import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 
-export const ImageGallery = ({ isLoading, gallery = [] }) => {
+export const ImageGallery = ({ isLoading, gallery = [], onImageClick }) => {
   return (
     <>
       {isLoading && (
@@ -28,6 +28,7 @@ export const ImageGallery = ({ isLoading, gallery = [] }) => {
               largeImageURL={largeImageURL}
               webformatURL={webformatURL}
               tags={tags}
+              onImageClick={onImageClick}
             />
           );
         })}
