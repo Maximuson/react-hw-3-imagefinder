@@ -65,6 +65,7 @@ class App extends Component {
             isLoading: false,
             gallery: imgaes,
             canDownloadMore: imgaes.length === 12,
+            page: 1,
           };
         });
         window.scrollTo({
