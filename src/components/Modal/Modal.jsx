@@ -17,7 +17,7 @@ class Modal extends Component {
     window.removeEventListener('keyup', this.handleKeyUp);
   }
 
-  clickOverlay = e => {
+  onClickOverlay = e => {
     const overlay = this.overlayRef.current;
     if (e.target === overlay) {
       this.props.closeOverlay();
@@ -27,7 +27,7 @@ class Modal extends Component {
     const { modalImage } = this.props;
     return (
       <div
-        onClick={this.clickOverlay}
+        onClick={this.onClickOverlay}
         ref={this.overlayRef}
         className={styles.Overlay}
       >

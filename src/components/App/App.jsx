@@ -11,7 +11,6 @@ class App extends Component {
     gallery: [],
     isLoading: false,
     modalImage: '',
-    isVisibleModal: false,
   };
   onSubmit = value => {
     this.setState(ps => {
@@ -25,7 +24,6 @@ class App extends Component {
     this.setState(() => {
       return {
         modalImage: '',
-        isVisibleModal: false,
       };
     });
   };
@@ -33,7 +31,6 @@ class App extends Component {
     this.setState(() => {
       return {
         modalImage,
-        isVisibleModal: true,
       };
     });
   };
@@ -41,7 +38,6 @@ class App extends Component {
     this.setState(() => {
       return {
         modalImage,
-        isVisibleModal: true,
       };
     });
   };
@@ -82,7 +78,7 @@ class App extends Component {
           gallery={this.state.gallery}
           onImageClick={this.onImageClick}
         />
-        {this.state.isVisibleModal && (
+        {this.state.modalImage && (
           <Modal
             closeOverlay={this.closeOverlay}
             modalImage={this.state.modalImage}
