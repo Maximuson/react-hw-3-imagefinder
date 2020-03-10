@@ -11,6 +11,8 @@ class App extends Component {
     gallery: [],
     isLoading: false,
     modalImage: '',
+    page: 1,
+    canDownloadMore: false,
   };
   onSubmit = value => {
     this.setState(ps => {
@@ -62,7 +64,40 @@ class App extends Component {
           return {
             isLoading: false,
             gallery: imgaes,
+            canDownloadMore: imgaes.length === 12,
           };
+        });
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth',
+        });
+      });
+    }
+    if (prevState.page !== this.state.page) {
+      this.setState(() => {
+        return {
+          isLoading: true,
+        };
+      });
+      pixabay.fetchMoreImgages(this.state.value, this.state.page).then(resp => {
+        const imgaes = resp.map(item => {
+          return {
+            id: item.id,
+            webformatURL: item.webformatURL,
+            tags: item.tags,
+            largeImageURL: item.largeImageURL,
+          };
+        });
+
+        this.setState(ps => {
+          return {
+            isLoading: false,
+            gallery: [...ps.gallery, ...imgaes],
+          };
+        });
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth',
         });
       });
     }
@@ -83,6 +118,19 @@ class App extends Component {
             closeOverlay={this.closeOverlay}
             modalImage={this.state.modalImage}
           />
+        )}
+        {this.state.canDownloadMore && !this.state.isLoading && (
+          <button
+            onClick={() => {
+              this.setState(ps => {
+                return {
+                  page: ps.page + 1,
+                };
+              });
+            }}
+          >
+            download More
+          </button>
         )}
       </div>
     );

@@ -7,7 +7,12 @@ const fetchImagesWithQuery = searchQuery => {
     .get(`${domain}?q=${searchQuery}&page=1&key=${key}&${defaultParams}`)
     .then(response => response.data.hits);
 };
-
+const fetchMoreImgages = (searchQuery, page) => {
+  return axios
+    .get(`${domain}?q=${searchQuery}&page=${page}&key=${key}&${defaultParams}`)
+    .then(response => response.data.hits);
+};
 export default {
   fetchImagesWithQuery,
+  fetchMoreImgages,
 };

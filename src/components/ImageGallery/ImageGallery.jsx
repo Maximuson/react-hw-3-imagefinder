@@ -7,18 +7,6 @@ import Loader from 'react-loader-spinner';
 export const ImageGallery = ({ isLoading, gallery = [], onImageClick }) => {
   return (
     <>
-      {isLoading && (
-        <Loader
-          style={{
-            margin: '0 auto',
-          }}
-          type="TailSpin"
-          color="#3f51b5"
-          height={100}
-          width={100}
-          timeout={3000} //3 secs
-        />
-      )}
       <ul className={styles.ImageGallery}>
         {gallery.map(item => {
           const { id, webformatURL, tags, largeImageURL } = item;
@@ -32,6 +20,18 @@ export const ImageGallery = ({ isLoading, gallery = [], onImageClick }) => {
             />
           );
         })}
+        {isLoading && (
+          <Loader
+            style={{
+              margin: '0 auto',
+            }}
+            type="TailSpin"
+            color="#3f51b5"
+            height={100}
+            width={100}
+            timeout={3000} //3 secs
+          />
+        )}
       </ul>
     </>
   );
