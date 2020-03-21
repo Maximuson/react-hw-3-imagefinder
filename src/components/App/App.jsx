@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './App.module.css';
 import Searchbar from '../Searchbar/Searchbar';
 import pixabay from '../../api/pixabay';
-import { ImageGallery } from '../ImageGallery/ImageGallery';
+import ImageGallery from '../ImageGallery/ImageGallery';
 import Modal from '../Modal/Modal';
 
 class App extends Component {
@@ -15,9 +15,8 @@ class App extends Component {
     canDownloadMore: false,
   };
   onSubmit = value => {
-    this.setState(ps => {
+    this.setState(() => {
       return {
-        ...ps,
         value,
       };
     });
@@ -122,6 +121,7 @@ class App extends Component {
         )}
         {this.state.canDownloadMore && !this.state.isLoading && (
           <button
+            className={styles.btn}
             onClick={() => {
               this.setState(ps => {
                 return {

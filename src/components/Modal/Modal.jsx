@@ -1,4 +1,6 @@
 import React, { createRef, Component } from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './Modal.module.css';
 class Modal extends Component {
   constructor(props) {
@@ -38,5 +40,9 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  closeOverlay: PropTypes.func.isRequired,
+};
 
 export default Modal;
